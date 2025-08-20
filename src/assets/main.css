@@ -1,1 +1,8 @@
 @import 'tailwindcss';
+
+@theme {
+  --color-primary-100: var #4e1111;
+  --color-primary-200: var oklch(28.512% 0.0911 25.048);
+  --color-secondary: rgb(192, 183, 183);
+  --color-tertiary: rgb(0, 0, 255);
+}
