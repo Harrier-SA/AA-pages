@@ -1,5 +1,5 @@
 <template>
-  <nav class="w-80 h-screen pt-8 fixed left-0 top-0 shadow-lg bg-red-50">
+  <nav class="z-50 w-80 h-screen pt-8 fixed left-0 top-0 shadow-lg bg-red-50/80">
     <ul class="flex flex-col justify-evenly h-screen flex-1 space-y-4 px-4">
       <li v-for="(item, idx) in navItems" :key="item.text" class="relative">
         <a
@@ -26,6 +26,7 @@ export default {
     const navItems = [
       { text: 'Home', link: '/', icon: ['fas', 'home'] },
       { text: 'Venue', link: '/about', icon: ['fas', 'map-pin'] },
+      { text: 'Live View', link: '/live', icon: ['fas', 'video'] },
       { text: 'Gallery', link: '/gallery', icon: ['fas', 'images'] },
       { text: 'Save the Date', link: '/contact', icon: ['fas', 'envelope'] },
     ]

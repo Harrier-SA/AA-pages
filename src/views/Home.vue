@@ -1,48 +1,46 @@
 <template>
-  <div class="max-w-4xl mx-auto my-8 p-4 bg-white rounded shadow">
-    <iframe
-      src="https://www.camsecure.co.uk/webcam/menteith/cam.html"
-      allowfullscreen
-      class="border-2 border-gray-300 rounded w-full aspect-video"
-      scrolling="no"
-    ></iframe>
+  <section class="relative h-[500px] flex items-center justify-center overflow-hidden">
+    <transition name="fade">
+      <div
+        v-if="show"
+        class="absolute inset-0 bg-cover bg-center"
+        style="background-image: url('src/assets/klom-view-1.jpg'); background-attachment: fixed"
+      ></div>
+    </transition>
+    <h1
+      class="font-wedding-one p-8 place-content-center text-center bg-red-50 bg-opacity-10 relative z-10 text-4xl font-bold rounded-lg text-gray-600"
+      name="A&A Wedding"
+    >
+      <h2 class="p-2 text-4xl">The Wedding</h2>
+      <h2 class="p-2 text-lg">Of</h2>
+      <span class="p-2 text-4xl">Andrew & Ailish </span>
+    </h1>
+  </section>
+
+  <div class="h-[1000px] bg-white">
+    <!-- More content to enable scrolling -->
   </div>
 </template>
 
 <script setup>
-flowplayer.conf = {
-  brand: {
-    text: 'Camsecure',
-    showOnOrigin: true,
-  },
+import { ref, onMounted } from 'vue'
+import liveView from '../components/liveView.vue'
 
-  analytics: 'UA-3434229-1',
-}
-flowplayer.conf.share = false
-flowplayer(function (api, root) {
-  // announce missing stream
-  api.on('error', function (e, api, err) {
-    if (err.code === 4 || err.code === 9) {
-      $('.fp-message p', root).text('We are sorry, currently no live stream available.')
-    }
-  })
-})
-
-flowplayer(function (api, root) {
-  var fsbutton = root.querySelector('.fp-fullscreen')
-
-  // append fullscreen button after HD menu is added on ready
-  api.on('ready', function () {
-    root.querySelector('.fp-controls').appendChild(fsbutton)
-  })
-})
-
-flowplayer(function (api, root) {
-  // keep large scaled play button visible
-  api.on('pause', function () {
-    root.querySelector('.fp-play').className += ' fp-visible'
-  })
+const show = ref(false)
+onMounted(() => {
+  setTimeout(() => {
+    show.value = true
+  }, 50) // slight delay for effect
 })
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 2s ease;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>
